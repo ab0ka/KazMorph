@@ -1,0 +1,39 @@
+affix,type,subtype,meaning_kz,meaning_ru,category,pos_result,harmony
+шы,кәсіп,professional,мамандық иесі,профессия,derivative,n,both
+ші,кәсіп,professional,мамандық иесі,профессия,derivative,n,front
+лық,абстракті,abstract,абстрактілі ұғым,абстрактное понятие,derivative,n,back
+лік,абстракті,abstract,абстрактілі ұғым,абстрактное понятие,derivative,n,front
+дық,абстракті,abstract,абстрактілі ұғым,абстрактное понятие,derivative,n,back
+дік,абстракті,abstract,абстрактілі ұғым,абстрактное понятие,derivative,n,front
+тық,абстракті,abstract,абстрактілі ұғым,абстрактное понятие,derivative,n,back
+тік,абстракті,abstract,абстрактілі ұғым,абстрактное понятие,derivative,n,front
+сыз,сын,negative,жоқтық,отсутствие,derivative,adj,back
+сіз,сын,negative,жоқтық,отсутствие,derivative,adj,front
+ғы,есімше,participle,есімше,причастие,derivative,adj,back
+гі,есімше,participle,есімше,причастие,derivative,adj,front
+қы,есімше,participle,есімше,причастие,derivative,adj,back
+кі,есімше,participle,есімше,причастие,derivative,adj,front
+дай,теңеу,comparative,теңеу,сравнение,derivative,adv,back
+дей,теңеу,comparative,теңеу,сравнение,derivative,adv,front
+тай,теңеу,comparative,теңеу,сравнение,derivative,adv,back
+тей,теңеу,comparative,теңеу,сравнение,derivative,adv,front
+рақ,салыстырмалы,comparative_adj,салыстырмалы шырай,сравнительная степень,derivative,adj,back
+рек,салыстырмалы,comparative_adj,салыстырмалы шырай,сравнительная степень,derivative,adj,front
+ыл,етіс,passive,ырықсыз етіс,страдательный залог,derivative,v,back
+іл,етіс,passive,ырықсыз етіс,страдательный залог,derivative,v,front
+ын,етіс,reflexive,өздік етіс,возвратный залог,derivative,v,back
+ін,етіс,reflexive,өздік етіс,возвратный залог,derivative,v,front
+ыс,етіс,cooperative,ортақ етіс,совместный залог,derivative,v,back
+іс,етіс,cooperative,ортақ етіс,совместный залог,derivative,v,front
+дыр,етіс,causative,өзгелік етіс,понудительный залог,derivative,v,back
+дір,етіс,causative,өзгелік етіс,понудительный залог,derivative,v,front
+тыр,етіс,causative,өзгелік етіс,понудительный залог,derivative,v,back
+тір,етіс,causative,өзгелік етіс,понудительный залог,derivative,v,front
+қыз,етіс,causative,өзгелік етіс,понудительный залог,derivative,v,back
+кіз,етіс,causative,өзгелік етіс,понудительный залог,derivative,v,front
+ма,етістік,negative,болымсыз етістік,отрицательный глагол,derivative,v,back
+ме,етістік,negative,болымсыз етістік,отрицательный глагол,derivative,v,front
+ба,етістік,negative,болымсыз етістік,отрицательный глагол,derivative,v,back
+бе,етістік,negative,болымсыз етістік,отрицательный глагол,derivative,v,front
+па,етістік,negative,болымсыз етістік,отрицательный глагол,derivative,v,back
+пе,етістік,negative,болымсыз етістік,отрицательный глагол,derivative,v,front

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KazMorph AI — Морфологиялық анализатор</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
+
+<div class="app-shell">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-mark">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <rect x="2" y="8" width="9" height="16" rx="3" fill="var(--accent)" opacity=".9"/>
+                    <rect x="12" y="4" width="9" height="24" rx="3" fill="var(--accent2)" opacity=".7"/>
+                    <rect x="23" y="12" width="7" height="12" rx="2" fill="var(--accent3)" opacity=".5"/>
+                    <circle cx="16" cy="16" r="3" fill="white" opacity=".8"/>
+                </svg>
+            </div>
+            <div class="brand-text">
+                <span class="brand-name">KazMorph<span class="ai-badge">AI</span></span>
+                <span class="brand-sub">Neural Morphology Analyzer</span>
+            </div>
+            <button class="sidebar-collapse" id="collapseBtn"><i class="fas fa-bars"></i></button>
+        </div>
+
+        <div class="sidebar-stats">
+            <div class="stat-pill"><i class="fas fa-database"></i><span id="rootsStat">—</span><em>Түбір</em></div>
+            <div class="stat-pill"><i class="fas fa-link"></i><span id="affixesStat">—</span><em>Жалғау</em></div>
+            <div class="stat-pill"><i class="fas fa-brain"></i><span id="aiAccuracy">—</span><em>AI дәлдік</em></div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <button class="nav-item active" data-tab="analyzer"><i class="fas fa-microscope"></i><span>Анализатор</span></button>
+            <button class="nav-item" data-tab="lessons"><i class="fas fa-graduation-cap"></i><span>Сабақтар</span><span class="nav-badge">20+</span></button>
+            <button class="nav-item" data-tab="database"><i class="fas fa-database"></i><span>Деректер</span></button>
+            <button class="nav-item" data-tab="history"><i class="fas fa-clock-rotate-left"></i><span>Тарих</span></button>
+            <button class="nav-item" data-tab="help"><i class="fas fa-circle-question"></i><span>Анықтама</span></button>
+        </nav>
+
+        <div class="sidebar-progress">
+            <div class="progress-label"><span><i class="fas fa-chart-line"></i> Жалпы прогресс</span><span id="progressPct">0%</span></div>
+            <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="xp-display"><i class="fas fa-star"></i> <span id="xpDisplay">0 XP</span></div>
+        </div>
+
+        <div class="sidebar-footer">
+            <button class="ctrl-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
+            <div class="lang-ctrl">
+                <button class="ctrl-btn lang-btn" id="langBtn">🇰🇿 Қаз</button>
+                <div class="lang-menu" id="langMenu">
+                    <button data-lang="kz"><i class="fas fa-check" id="check-kz"></i> Қазақша</button>
+                    <button data-lang="ru"><i class="fas fa-check hidden" id="check-ru"></i> Русский</button>
+                    <button data-lang="en"><i class="fas fa-check hidden" id="check-en"></i> English</button>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-area">
+        <!-- ANALYZER TAB -->
+        <div id="tab-analyzer" class="tab-panel active">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <h1>Морфологиялық Анализатор <span class="ai-chip">AI Powered</span></h1>
+                    <p>Нейрондық желі көмегімен сөздердің толық морфологиялық талдауы</p>
+                </div>
+                <div class="mode-toggle">
+                    <button class="mode-btn active" data-mode="word"><i class="fas fa-spell-check"></i> Сөз</button>
+                    <button class="mode-btn" data-mode="text"><i class="fas fa-paragraph"></i> Мәтін</button>
+                </div>
+            </div>
+
+            <!-- Word Mode -->
+            <div id="wordMode" class="mode-panel active">
+                <div class="input-zone">
+                    <div class="input-inner">
+                        <div class="input-label"><i class="fas fa-spell-check"></i> Қазақша сөзді енгізіңіз</div>
+                        <div class="input-row">
+                            <input type="text" id="wordInput" placeholder="Мысалы: кітабым, мектепке, оқушылар..." autocomplete="off">
+                            <button class="analyze-btn" id="wordAnalyzeBtn"><i class="fas fa-brain"></i> AI Талдау</button>
+                        </div>
+                        <div class="chips-row">
+                            <span class="chips-label"><i class="fas fa-bolt"></i> Мысалдар:</span>
+                            <div class="chips">
+                                <button class="chip" data-word="кітабым">кітабым</button>
+                                <button class="chip" data-word="мектепке">мектепке</button>
+                                <button class="chip" data-word="оқушылар">оқушылар</button>
+                                <button class="chip" data-word="достарымнан">достарымнан</button>
+                                <button class="chip" data-word="жаздырмадым">жаздырмадым</button>
+                                <button class="chip" data-word="көрсеткіштеріміз">көрсеткіштеріміз</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="result-zone" id="wordResultZone">
+                    <div class="result-empty">
+                        <div class="empty-art"><i class="fas fa-brain" style="font-size: 48px; opacity: 0.3;"></i></div>
+                        <p>Сөзді енгізіп, «AI Талдау» батырмасын басыңыз</p>
+                        <p class="empty-hint">Нейрондық желі түбірді, жұрнақтарды және жалғауларды автоматты түрде анықтайды</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text Mode -->
+            <div id="textMode" class="mode-panel">
+                <div class="input-zone">
+                    <div class="input-inner">
+                        <div class="input-label"><i class="fas fa-paragraph"></i> Қазақша мәтінді енгізіңіз</div>
+                        <textarea id="textInput" rows="6" placeholder="Мысалы: Бүгін мен мектепке бардым. Кітапханадан кітап алдым. Сабақ өте қызықты өтті."></textarea>
+                        <div class="text-btn-row">
+                            <button class="txa-btn primary" id="textAnalyzeBtn"><i class="fas fa-chart-bar"></i> Толық талдау</button>
+                            <button class="txa-btn" id="textStatsBtn"><i class="fas fa-chart-pie"></i> Статистика</button>
+                            <div class="example-texts">
+                                <button class="txa-btn" data-example="1">📖 Мен туралы</button>
+                                <button class="txa-btn" data-example="2">🏫 Мектеп</button>
+                                <button class="txa-btn" data-example="3">👨‍👩‍👧 Отбасы</button>
+                                <button class="txa-btn" data-example="4">🌿 Табиғат</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="result-zone" id="textResultZone">
+                    <div class="result-empty">
+                        <i class="fas fa-paragraph" style="font-size: 48px; opacity: 0.3;"></i>
+                        <p>Мәтінді енгізіп, «Толық талдау» батырмасын басыңыз</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LESSONS TAB -->
+        <div id="tab-lessons" class="tab-panel">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <h1>Интерактивті Сабақтар</h1>
+                    <p>Видео-сабақтар, теория, тесттер және жаттығулар</p>
+                </div>
+                <div class="xp-badge"><i class="fas fa-star"></i> <span id="lessonXP">0 XP</span></div>
+            </div>
+            <div id="lessonMapView"><div id="lessonMap" class="lesson-map"></div></div>
+            <div id="lessonDetailView" class="lesson-viewer hidden">
+                <button class="back-btn" id="backToMapBtn"><i class="fas fa-arrow-left"></i> Артқа</button>
+                <div id="lessonContent"></div>
+            </div>
+        </div>
+
+        <!-- DATABASE TAB -->
+        <div id="tab-database" class="tab-panel">
+            <div class="panel-header">
+                <div class="panel-title"><h1>Деректер базасы</h1><p>Түбірлер, жалғаулар, жұрнақтар</p></div>
+                <div class="db-search-box"><i class="fas fa-search"></i><input type="text" id="dbSearchInput" placeholder="Іздеу..."></div>
+            </div>
+            <div class="db-tabs">
+                <button class="db-tab active" data-db-tab="roots"><i class="fas fa-tree"></i> Түбірлер</button>
+                <button class="db-tab" data-db-tab="affixes"><i class="fas fa-link"></i> Жалғаулар</button>
+                <button class="db-tab" data-db-tab="derivatives"><i class="fas fa-plus-circle"></i> Жұрнақтар</button>
+            </div>
+            <div id="db-roots" class="db-panel active"><div class="table-wrap"><table class="data-table"><thead><tr><th>Түбір</th><th>Сөз табы</th><th>Мағынасы</th><th>Үндесім</th></tr></thead><tbody id="rootsTableBody"><tr><td colspan="4" class="loading-cell"><div class="spinner"></div> Жүктелуде...</td></tr></tbody></table></div></div>
+            <div id="db-affixes" class="db-panel"><div class="table-wrap"><table class="data-table"><thead><tr><th>Жалғау</th><th>Түрі</th><th>Мағынасы</th><th>Ереже</th></tr></thead><tbody id="affixesTableBody"><tr><td colspan="4" class="loading-cell"><div class="spinner"></div> Жүктелуде...</td></tr></tbody></table></div></div>
+            <div id="db-derivatives" class="db-panel"><div class="table-wrap"><table class="data-table"><thead><tr><th>Жұрнақ</th><th>Түрі</th><th>Мағынасы</th><th>Мысал</th></tr></thead><tbody id="derivativesTableBody"><tr><td colspan="4" class="loading-cell"><div class="spinner"></div> Жүктелуде...</td></tr></tbody></table></div></div>
+        </div>
+
+        <!-- HISTORY TAB -->
+        <div id="tab-history" class="tab-panel">
+            <div class="panel-header"><div class="panel-title"><h1>Талдау тарихы</h1><p>Соңғы талданған сөздер</p></div><button class="ctrl-btn" id="clearHistoryBtn"><i class="fas fa-trash"></i> Тазарту</button></div>
+            <div id="historyGrid" class="history-grid"><div class="history-empty"><i class="fas fa-history"></i><p>Тарих бос</p></div></div>
+        </div>
+
+        <!-- HELP TAB -->
+        <div id="tab-help" class="tab-panel">
+            <div class="panel-header"><div class="panel-title"><h1>Анықтама</h1><p>Жүйені қолдану нұсқаулығы</p></div></div>
+            <div class="help-grid">
+                <div class="help-card"><div class="help-icon"><i class="fas fa-brain"></i></div><h3>AI Нейрожелі</h3><p>Жасанды интеллект сөздің түбірін, жұрнақтарын және жалғауларын автоматты түрде анықтайды.</p></div>
+                <div class="help-card"><div class="help-icon"><i class="fab fa-youtube"></i></div><h3>Видео-сабақтар</h3><p>Әр сабаққа қазақ тілін үйрететін YouTube бейнематериалдар қосылған.</p></div>
+                <div class="help-card"><div class="help-icon"><i class="fas fa-keyboard"></i></div><h3>Жылдам пернелер</h3><div class="kbd-grid"><kbd>Enter</kbd><span>Талдау</span><kbd>Ctrl+H</kbd><span>Тарих</span><kbd>Ctrl+L</kbd><span>Сабақтар</span></div></div>
+                <div class="help-card"><div class="help-icon"><i class="fas fa-palette"></i></div><h3>Морфема белгілері</h3><div class="ref-grid"><div class="ref-item"><span class="ref-tag root-tag">Түбір</span><span>Негізгі мағына</span></div><div class="ref-item"><span class="ref-tag deriv-tag">Жұрнақ</span><span>Жаңа сөз тудырады</span></div><div class="ref-item"><span class="ref-tag affix-tag">Жалғау</span><span>Грамматикалық форма</span></div></div></div>
+                <div class="help-card help-card-wide"><div class="help-icon"><i class="fas fa-table"></i></div><h3>Қазақ тілінің септік жүйесі</h3><div class="cases-table"><div class="case-row"><span class="case-name">Атау</span><code>—</code><span>Кім? Не?</span></div><div class="case-row"><span class="case-name">Ілік</span><code>-ның/-нің</code><span>Кімнің? Ненің?</span></div><div class="case-row"><span class="case-name">Барыс</span><code>-ға/-ге/-қа/-ке</code><span>Кімге? Неге?</span></div><div class="case-row"><span class="case-name">Табыс</span><code>-ны/-ні/-ды/-ді</code><span>Кімді? Нені?</span></div><div class="case-row"><span class="case-name">Жатыс</span><code>-да/-де/-та/-те</code><span>Қайда? Кімде?</span></div><div class="case-row"><span class="case-name">Шығыс</span><code>-дан/-ден/-нан/-нен</code><span>Қайдан? Кімнен?</span></div><div class="case-row"><span class="case-name">Көмектес</span><code>-мен/-бен/-пен</code><span>Кіммен? Немен?</span></div></div></div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div id="toast" class="toast"></div>
+<div id="loadingOverlay" class="loading-overlay hidden"><div class="loading-inner"><div class="loading-logo">🧠</div><div class="loading-bar"><div class="loading-progress"></div></div><p>AI модель жүктелуде...</p></div></div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
