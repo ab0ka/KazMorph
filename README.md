@@ -1,100 +1,100 @@
-# KazMorph - Казахский морфологический анализатор
+# KazMorph - Kazakh Morphological Analyzer
 
-Проект для морфологического анализа казахского языка с использованием методов обработки естественного языка и нейронных сетей.
+A project for morphological analysis of the Kazakh language using natural language processing and neural networks.
 
-##  Основные возможности
+## Features
 
--  Анализ и парсинг аффиксов казахского языка
--  Разбор структуры слов на корни и морфемы
--  Определение грамматических форм слов (склонение, спряжение)
--  Нейросетевой анализ текста
--  Веб-интерфейс для интерактивного использования
+- Kazakh language affix analysis and parsing
+- Word structure decomposition into roots and morphemes
+- Grammatical form identification (declension, conjugation)
+- Neural network-based text analysis
+- Web interface for interactive use
 
-##  Структура проекта
+## Project Structure
 
 ```
 KazMorph/
 ├── backend/                    # Python Backend
-│   ├── app.py                 # Главное Flask приложение
-│   ├── affix_parser.py        # Парсер аффиксов
-│   ├── analyzer.py            # Основной анализатор
-│   ├── neural_analyzer.py     # Нейросетевой анализатор
-│   ├── text_analyzer.py       # Анализатор текста
-│   ├── requirements.txt       # Зависимости Python
-│   └── data/                  # База данных
-│       ├── affixes.csv        # Аффиксы казахского языка
-│       ├── dataset.csv        # Обучающий датасет
-│       ├── derivatives.csv    # Производные формы
-│       ├── inflections.csv    # Флексии
-│       ├── jyrnaq.csv         # Журнак (наборы слов)
-│       ├── lectures.csv       # Лекционные материалы
-│       ├── roots.csv          # Корневые слова
-│       └── rules.csv          # Грамматические правила
-├── frontend/                  # Веб-интерфейс
-│   ├── index.html            # Главная страница
-│   ├── script.js             # JavaScript логика
-│   └── style.css             # Стили
-└── README.md                 # Этот файл
+│   ├── app.py                 # Main Flask application
+│   ├── affix_parser.py        # Affix parser
+│   ├── analyzer.py            # Core analyzer
+│   ├── neural_analyzer.py     # Neural network analyzer
+│   ├── text_analyzer.py       # Text analyzer
+│   ├── requirements.txt       # Python dependencies
+│   └── data/                  # Database
+│       ├── affixes.csv        # Kazakh language affixes
+│       ├── dataset.csv        # Training dataset
+│       ├── derivatives.csv    # Derivative forms
+│       ├── inflections.csv    # Inflections
+│       ├── jyrnaq.csv         # Jyrnaq (word sets)
+│       ├── lectures.csv       # Lecture materials
+│       ├── roots.csv          # Root words
+│       └── rules.csv          # Grammar rules
+├── frontend/                  # Web interface
+│   ├── index.html            # Main page
+│   ├── script.js             # JavaScript logic
+│   └── style.css             # Styles
+└── README.md                 # This file
 ```
 
-##  Установка и запуск
+## Installation & Setup
 
 ### Backend
 
 ```bash
-# Установить зависимости
+# Install dependencies
 cd backend
 pip install -r requirements.txt
 
-# Запустить Flask приложение
+# Run Flask application
 python app.py
 ```
 
-Приложение будет доступно на `http://localhost:5000`
+The application will be available at `http://localhost:5000`
 
 ### Frontend
 
-Откройте файл `frontend/index.html` в браузере или используйте live server.
+Open `frontend/index.html` in a browser or use a live server.
 
-##  Данные
+## Data
 
-Проект использует CSV-файлы с казахским языковым материалом:
+The project uses CSV files with Kazakh language material:
 
-- **roots.csv** - Корневые слова казахского языка
-- **affixes.csv** - Суффиксы и префиксы
-- **inflections.csv** - Словоизменительные окончания
-- **derivatives.csv** - Производные формы слов
-- **rules.csv** - Грамматические правила
-- **dataset.csv** - Полный датасет для обучения
+- **roots.csv** — Root words of the Kazakh language
+- **affixes.csv** — Suffixes and prefixes
+- **inflections.csv** — Inflectional endings
+- **derivatives.csv** — Derivative word forms
+- **rules.csv** — Grammar rules
+- **dataset.csv** — Full training dataset
 
-##  Технологии
+## Technologies
 
 - **Backend**: Python, Flask
 - **Frontend**: HTML5, CSS3, JavaScript
-- **Данные**: CSV форматы
-- **Machine Learning**: Neural Networks (для продвинутого анализа)
+- **Data**: CSV format
+- **Machine Learning**: Neural Networks (for advanced analysis)
 
-##  Использование
+## Usage
 
-1. Введите казахское слово или текст в веб-интерфейс
-2. Выберите тип анализа:
-   - Морфологический разбор
-   - Парсинг аффиксов
-   - Нейросетевой анализ
-3. Получите детальный анализ структуры слова
+1. Enter a Kazakh word or text in the web interface
+2. Select the analysis type:
+   - Morphological parsing
+   - Affix parsing
+   - Neural network analysis
+3. Get a detailed analysis of the word structure
 
-##  Автор
+## Author
 
 ab0ka
 
-##  Лицензия
+## License
 
 MIT License
 
-##  Содействие
+## Contributing
 
-Приложу с удовольствием принимаю предложения и исправления!
+Suggestions and corrections are always welcome!
 
 ---
 
-**Статус**: В разработке 
+**Status**: In development
